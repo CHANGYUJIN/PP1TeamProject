@@ -4,13 +4,13 @@
 
 	<insert id="insertBoard">
 		<!-- insert into BOARD (category, title, writer, content) values -->
-		insert into PP1BOARD (RC,roomnum,gender,stdnum,name,temp) values
-		(#{RC},#{roomnum},#{gender},#{stdnum},#{name},#{temp})
+		insert into PP1BOARD (RC,roomnum,gender,stdnum,name,temp,filename,userID) values
+		(#{RC},#{roomnum},#{gender},#{stdnum},#{name},#{temp},#{filename},#{userID})
 	</insert>
 
 	<update id="updateBoard">
 		update BOARD
-		set RC=#{RC},roomnum=#{roomnum},gender=#{gender},stdnum=#{stdnum},name=#{name},temp=#{temp}
+		set RC=#{RC},roomnum=#{roomnum},gender=#{gender},stdnum=#{stdnum},name=#{name},temp=#{temp},filename=#{filename}
 		where seq=#{seq}
 	</update>
 

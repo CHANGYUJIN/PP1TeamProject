@@ -2,6 +2,8 @@ package com.my.myboard;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 //RC,roomnum,gender,stdnum,name,temp
 
 public class BoardVO {
@@ -11,9 +13,11 @@ public class BoardVO {
 	private String gender; //w,m
 	private int stdnum; //21900442 .... 
 	private String name; //연혜은 .... 
-	private int temp; //체온 36 ... 
+	private int temp; //체온 36 ...
+	private String filename;
+	private String userID;
+	private MultipartFile uploadPhoto;
 	private Date regdate;
-	private int cnt; //? 
 	
 	public int getSeq() {
 		return seq;
@@ -26,12 +30,6 @@ public class BoardVO {
 	}
 	public void setRegdate(Date regdate) {
 		this.regdate = regdate;
-	}
-	public int getCnt() {
-		return cnt;
-	}
-	public void setCnt(int cnt) {
-		this.cnt = cnt;
 	}
 	public String getRC() {
 		return RC;
@@ -69,4 +67,24 @@ public class BoardVO {
 	public void setTemp(int temp) {
 		this.temp = temp;
 	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+	public String getUserID() {
+		return userID;
+	}
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+	public MultipartFile getUploadPhoto() {
+		return uploadPhoto;
+	}
+	public void setUploadPhoto(MultipartFile uploadPhoto) {
+		this.uploadPhoto = uploadPhoto;
+	}
+	
+	
 }
