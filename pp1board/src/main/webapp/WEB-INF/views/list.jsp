@@ -4,8 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>list</title>
-	<link rel="stylesheet" href="form.css">
+	<link href="${pageContext.request.contextPath}/resources/form.css" rel="stylesheet">
 <script>
 	function delete_ok(id){
 		var a = confirm("정말로 삭제하겠습니까?");
@@ -13,7 +14,7 @@
 	}
 </script>
 </head>
-<body>
+<body >
 <h1>Dorm Roll-call</h1>
 <table id="list" width="90%">
 <tr>
@@ -21,8 +22,11 @@
 	<th>RC</th>
 	<th>Room #</th>
 	<th>User ID</th>
-	<th>Name  </th>
+	<th>Name</th>
+	<th>Temperature</th>
 	<th>RegDate</th>
+	<th>View</th>
+	<th>Delete</th>
 </tr>
 <c:forEach items="${list}" var="u">
 	<tr>
@@ -31,6 +35,7 @@
 		<td>${u.roomnum}</td>
 		<td>${u.userID}</td>
 		<td>${u.name}</td>
+		<td>${u.temp}</td>
 		<td>${u.regdate}</td>
 		<td><a href="view/${u.seq}">View</a></td>
 		<td><a href="javascript:delete_ok('${u.seq}')">Delete</a></td>

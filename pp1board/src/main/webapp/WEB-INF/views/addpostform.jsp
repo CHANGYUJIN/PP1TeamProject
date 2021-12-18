@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="${pageContext.request.contextPath}/resources/form.css" rel="stylesheet">
 <title>add post</title>
 <link rel="stylesheet" type="text/css" href="liststyle.css">
 </head>

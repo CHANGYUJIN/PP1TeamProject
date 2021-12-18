@@ -4,18 +4,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="${pageContext.request.contextPath}/resources/form.css" rel="stylesheet">
 <title>login</title>
 <style>
-	img, label{
-	display:inline-block;
-	}
-	label{width:120px}
-	button{background-color:blue; color:white;font-size:15px}
 </style>
 </head>
 <body>
 <div style="width:100%; text-align:center; padding-top:100px">
-<img src="../img/snowman.png" height="250">
+<img src="${pageContext.request.contextPath}/resources/img/snowman.jpg" height="250">
 <form method="post" action="loginOk">
 <div><label>User ID: </label><input type='text' name='userid' /></div>
 <div><label>Password: </label>

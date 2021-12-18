@@ -1,0 +1,52 @@
+@charset "UTF-8";
+#list {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+#list td, #list th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align:center;
+}
+#list tr:nth-child(even){background-color: #f2f2f2;}
+#list tr:hover {background-color: #ddd;}
+#list tr{background-color: white;}
+#list th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #94A6D1;
+  color: white;
+}
+
+#edit {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 10px;
+}
+#edit td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+#edit td:nth-child(1) {
+  width:100px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #94A6D1;
+  color: white;
+}
+
+.photo {max-width:400px;}
+h1 {text-align:center;}
+
+img, label{
+	display:inline-block;
+}
+body{
+	background-color: #FAFBFF;
+}
+label{width:120px}
+button{font-family: "Trebuchet MS", Arial, Helvetica, sans-serif; background-color:#94A6D1; color:white;font-size:15px; margin: 1px;}

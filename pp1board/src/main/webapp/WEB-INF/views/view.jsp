@@ -5,7 +5,7 @@
 <html>
 <head>
 	<title>view</title>
-	<link rel="stylesheet" href="form.css">
+	<link href="${pageContext.request.contextPath}/resources/form.css" rel="stylesheet">
 </head>
 <body>
 <table id="edit">
@@ -22,11 +22,13 @@
 			<td>Name</td><td>${view.name}</td>
 		</tr>
 		<tr>
+			<td>Temperature</td><td>${view.temp}</td>
+		</tr>
+		<tr>
 			<td>Photo</td><td><c:if test="${view.filename ne ''}"><br />
-			<img src="<%=request.getContextPath() %>/img/${view.filename}" class="photo"></c:if></td>
+			<img src="${pageContext.request.contextPath}/resources/img/${view.filename}" class="photo"></c:if></td>
 		</tr>
 </table>
 	<button type="button" onclick="history.back()">Previous Page</button>
-	<button type="button" onclick="location.href='add'">Add New Post</button>
 </body>
 </html>
