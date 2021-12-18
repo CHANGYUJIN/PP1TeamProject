@@ -2,11 +2,16 @@ package com.my.myboard;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FilenameUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +27,32 @@ import org.springframework.web.multipart.MultipartFile;
 public class BoardController {
 	
 	@Autowired
-	BoardService boardServiece; 
+	BoardService boardService; 
+	
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+		
+	/**
+	 * Simply selects the home view to render by returning its name.
+	 */
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public String home(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		
+		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("list", boardService.getBoardList());
+		
+		return "list";
+	}
 	
 	//목록 보기 list 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public String boardlist(Model model) {
-		model.addAttribute("list", boardServiece.getBoardList());	
+		model.addAttribute("list", boardService.getBoardList());	
 		return "list";
 	}
 	
@@ -42,7 +67,7 @@ public class BoardController {
 	public String addPostOK(BoardVO vo, HttpServletRequest request) throws IOException {
 		
 		String filename = null;
-		String realPath = request.getSession().getServletContext().getRealPath("img");
+		String realPath = request.getSession().getServletContext().getRealPath("/img");
 		File dir = new File(realPath);
 		if(!dir.exists()) dir.mkdirs();
 		MultipartFile uploadPhoto = vo.getUploadPhoto();
@@ -55,7 +80,7 @@ public class BoardController {
 		}
 		vo.setFilename(filename);
 		
-		int i = boardServiece.insertBoard(vo);
+		int i = boardService.insertBoard(vo);
 		
 		if ( i==0 ) {
 			System.out.println("Something went wrong. Please retry."); }
@@ -66,34 +91,41 @@ public class BoardController {
 		return "redirect:list"; 
 	}
 	
+	@RequestMapping(value = "/view/{id}", method = RequestMethod.GET)
+	public String viewPost(@PathVariable("id") int id, Model model) {
+		BoardVO boardVO = boardService.getBoard(id);
+		model.addAttribute("view", boardVO);
+		
+		return "view";
+	}
 	
 	//수정 폼 
-	@RequestMapping(value = "/editpost/{id}", method = RequestMethod.GET) 
-	public String editPost(@PathVariable("id") int id, Model model) {
-		BoardVO boardVO = boardServiece.getBoard(id);
-		model.addAttribute("boardVO", boardVO); 
-		return "editform"; 
-	}
+//	@RequestMapping(value = "/editpost/{id}", method = RequestMethod.GET) 
+//	public String editPost(@PathVariable("id") int id, Model model) {
+//		BoardVO boardVO = boardService.getBoard(id);
+//		model.addAttribute("boardVO", boardVO); 
+//		return "editform"; 
+//	}
 			
 	//수정 ok 폼 
-	@RequestMapping(value = "/editok", method = RequestMethod.POST)
-	public String editPostOK(BoardVO vo) {
-		
-		int i = boardServiece.insertBoard(vo);
-		
-		if ( i==0 ) {
-			System.out.println("Something went wrong. Please retry."); }
-		
-		else {
-			System.out.println("Successfully uploaded!" ); } 
-		
-		return "redirect:list"; 
-	}
+//	@RequestMapping(value = "/editok", method = RequestMethod.POST)
+//	public String editPostOK(BoardVO vo) {
+//		
+//		int i = boardService.insertBoard(vo);
+//		
+//		if ( i==0 ) {
+//			System.out.println("Something went wrong. Please retry."); }
+//		
+//		else {
+//			System.out.println("Successfully uploaded!" ); } 
+//		
+//		return "redirect:list"; 
+//	}
 	
 	//삭제 폼 
 	@RequestMapping(value = "/deleteok/{id}", method = RequestMethod.GET)
 	public String deletePost(@PathVariable("id") int id) {
-		int i = boardServiece.deleteBoard(id);
+		int i = boardService.deleteBoard(id);
 		
 		if(i==0) {
 			System.out.println("Something went wrong. Please retry.");

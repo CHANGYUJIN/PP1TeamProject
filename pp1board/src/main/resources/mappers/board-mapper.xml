@@ -4,26 +4,27 @@
 
 	<insert id="insertBoard">
 		<!-- insert into BOARD (category, title, writer, content) values -->
-		insert into PP1BOARD (RC,roomnum,gender,stdnum,name,temp,filename,userID) values
-		(#{RC},#{roomnum},#{gender},#{stdnum},#{name},#{temp},#{filename},#{userID})
+		insert into PP1BOARD (RC, roomnum, name, temp, filename, regdate, userID)
+		values
+		(#{RC}, #{roomnum}, #{name}, #{temp}, #{filename}, now(), #{userID})
 	</insert>
 
-	<update id="updateBoard">
+	<!-- <update id="updateBoard">
 		update BOARD
 		set RC=#{RC},roomnum=#{roomnum},gender=#{gender},stdnum=#{stdnum},name=#{name},temp=#{temp},filename=#{filename}
 		where seq=#{seq}
-	</update>
+	</update> -->
 
 	<delete id="deleteBoard">
-		delete from BOARD where seq=#{seq}
+		delete from PP1BOARD where seq=#{seq}
 	</delete>
 	
 	<select id="getBoard" resultType="board">
-		select * from BOARD where seq=#{seq}
+		select * from PP1BOARD where seq=#{seq}
 	</select>
 	
 	<select id="getBoardList" resultType="board">
-		select * from BOARD order by seq desc
+		select * from PP1BOARD order by seq desc
 	</select>
 
 </mapper>

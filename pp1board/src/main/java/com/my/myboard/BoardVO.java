@@ -9,11 +9,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class BoardVO {
 	private int seq;
 	private String RC; //Rodem, Bethel ... 
-	private int roomnum; //415 ... 
-	private String gender; //w,m
-	private int stdnum; //21900442 .... 
+	private String roomnum; //415 ...
 	private String name; //연혜은 .... 
-	private int temp; //체온 36 ...
+	private String temp; //체온 36 ...
 	private String filename;
 	private String userID;
 	private MultipartFile uploadPhoto;
@@ -37,23 +35,11 @@ public class BoardVO {
 	public void setRC(String rc) {
 		RC = rc;
 	}
-	public int getRoomnum() {
+	public String getRoomnum() {
 		return roomnum;
 	}
-	public void setRoomnum(int roomnum) {
+	public void setRoomnum(String roomnum) {
 		this.roomnum = roomnum;
-	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public int getStdnum() {
-		return stdnum;
-	}
-	public void setStdnum(int stdnum) {
-		this.stdnum = stdnum;
 	}
 	public String getName() {
 		return name;
@@ -61,10 +47,10 @@ public class BoardVO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getTemp() {
+	public String getTemp() {
 		return temp;
 	}
-	public void setTemp(int temp) {
+	public void setTemp(String temp) {
 		this.temp = temp;
 	}
 	public String getFilename() {
